@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
+
+	<!-- *************** 用户action *************** -->
+	<package name="user" namespace="/" extends="struts-default">
+<!-- 		<interceptors>
+			<interceptor name="loginInteceptor"
+				class="cn.dc.supermarket.interceptor.LoginInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInteceptor">
+					<param name="excludeMethods">execute</param> 
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="loginStack" /> -->
+		<action name="login" class="userAction" method="execute">
+			<result>/WEB-INF/views/login.jsp</result>
+			<!-- <interceptor-ref name="loginInteceptor"></interceptor-ref> -->
+		</action>
+		<action name="registPage" class="userAction" method="registPage">
+			<result name="registPage">/WEB-INF/views/admin/registPage.jsp</result>
+		</action>
+		<action name="regist" class="userAction" method="regist">
+			<result name="registSuccess">/WEB-INF/views/admin/registSuccess.jsp</result>
+		</action>
+		<action name="registCheck" class="userAction" method="registCheck"></action>
+		<action name="activate" class="userAction" method="activate">
+			<result name="activateFaild">adminStatic/activateFaild.jsp</result>
+			<result name="activateSuccess">adminStatic/activateSuccess.jsp</result>
+		</action>
+		<action name="user_*" class="userAction" method="{1}">
+			<result>adminStatic/index.jsp</result>
+			<result name="exit">/WEB-INF/views/login.jsp</result>
+			<result name="changePswPage">/WEB-INF/views/admin/user_changePswPage.jsp
+			</result>
+			<result name="addPage">/WEB-INF/views/admin/user_addPage.jsp</result>
+			<result name="listPage">/WEB-INF/views/admin/user_findAllByPage.jsp
+			</result>
+			<result name="editPage">/WEB-INF/views/admin/user_editPage.jsp</result>
+			<result name="editSuccess" type="redirectAction">user_findAllByPage.action
+			</result>
+			<result name="findSuccess">/WEB-INF/views/admin/user_findByName.jsp</result>
+			<result name="deleteSuccess" type="redirectAction">user_findAllByPage.action
+			</result>
+			<result name="error">/WEB-INF/views/login.jsp</result>
+			<result name="redirectLogin">adminStatic/redirectPage.jsp</result>
+		</action>
+	</package>
+
+	<!-- *************** 产品action *************** -->
+	<package name="product" namespace="/" extends="struts-default">
+
+		
+		<action name="product_*" class="productAction" method="{1}">
+			<result name="addPage">/WEB-INF/views/admin/product_addPage.jsp</result>
+			<result name="sellIndex">adminStatic/sellIndex.jsp</result>
+			<result name="sellPage">/WEB-INF/views/admin/product_sellPage.jsp
+			</result>
+			<!-- <result name="operationPage">/WEB-INF/views/admin/sellRecord_sellOperation.jsp</result> -->
+			<result name="updatePage">/WEB-INF/views/admin/product_updatePage.jsp
+			</result>
+			<result name="listPage">/WEB-INF/views/admin/product_findAllByPage.jsp
+			</result>
+			<result name="addSuccess" type="redirectAction">product_addPage.action</result>
+			<result name="deleteSuccess" type="redirectAction">product_findAllByPage.action
+			</result>
+			<result name="updateSuccess" type="redirectAction">product_findAllByPage.action
+			</result>
+			<result name="findSuccess">/WEB-INF/views/admin/product_findById.jsp
+			</result>
+			
+		</action>
+	</package>
+
+	<!-- *************** 出货记录action *************** -->
+	<package name="sellRecord" namespace="/sellRecord" extends="struts-default">
+		<action name="sellRecord_*" class="sellRecordAction" method="{1}">
+			<result name="sellPage">/WEB-INF/views/admin/sellRecord_sellOperation.jsp
+			</result>
+			<result name="addSuccess">/WEB-INF/views/admin/product_findAllByPage.jsp</result>
+			<result name="findSuccess">/WEB-INF/views/admin/sellRecord_findAll.jsp</result>
+		</action>
+	</package>
+</struts>    

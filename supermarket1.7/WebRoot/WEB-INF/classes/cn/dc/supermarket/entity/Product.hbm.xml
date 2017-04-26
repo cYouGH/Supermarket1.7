@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.dc.supermarket.entity">
+
+	<class name="Product" table="_product">
+	
+		<id name="pid" type="integer" column="pid" >
+			<generator class="increment"></generator>
+		</id>
+		<property name="productName" type="string" column="productName"></property>
+		<property name="imgPath" type="string" column="imgPath"></property>
+		<property name="priceIn" type="double" column="priceIn"></property>
+		<property name="priceOut" type="double" column="priceIOut"></property>
+		<property name="stockNum" type="int" column="stockNum"></property>
+		<property name="disc" type="string" column="disc"></property>
+		<property name="inTime" type="date" column="inTime"></property>
+		<property name="outTime" type="date" column="outTime"></property>
+		<many-to-one name="productCategory" column="productCategory" lazy="false" ></many-to-one>
+	</class>
+
+</hibernate-mapping>

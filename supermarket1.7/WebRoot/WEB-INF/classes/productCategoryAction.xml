@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+	 http://www.springframework.org/schema/context
+	 http://www.springframework.org/schema/context/spring-context.xsd
+	 http://www.springframework.org/schema/tx 
+	 http://www.springframework.org/schema/tx/spring-tx.xsd
+	 http://www.springframework.org/schema/aop
+	 http://www.springframework.org/schema/aop/spring-aop.xsd" 
+	 >
+	 
+
+	<!-- 创建productCategoryService对象 并向里面注入productCategoryDaoImp对象 -->
+	<bean id="productCategoryServiceImp" class="cn.dc.supermarket.service.ProductCategoryServiceImp" scope="prototype">
+		<property name="productCategoryDao" ref="productCategoryDaoImp"></property>
+	</bean>
+	
+	<!-- 创建productCategoryDaoImp对象 -->
+	<bean id="productCategoryDaoImp" class="cn.dc.supermarket.dao.ProductCategoryDaoImp">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	
+	<!-- 创建hibernaTetemplate对象 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+</beans>
