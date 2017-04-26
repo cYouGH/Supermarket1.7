@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.dc.supermarket.entity">
+
+	<class name="SellRecord" table="_sellRecord">
+	
+		<id name="sellId" type="integer" column="sellId" >
+			<generator class="increment"></generator>
+		</id>
+		<property name="sellCount" type="int" column="sellCount"></property>
+		<property name="discount" type="double" column="discount"></property>
+		<property name="totalMoney" type="double" column="totalMoney"></property>
+		<property name="profit" type="double" column="profit"></property>
+		<property name="sellDate" type="date" column="sellDate"></property>
+		<property name="sellDisc" type="string" column="sellDisc"></property>
+		
+		<many-to-one name="sellProduct" cascade="all" lazy="false"></many-to-one>
+		<many-to-one name="opUser" cascade="all" lazy="false"></many-to-one>
+	</class>
+
+</hibernate-mapping>
